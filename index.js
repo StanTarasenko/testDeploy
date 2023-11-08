@@ -6,10 +6,11 @@ const cors = require('cors');
 
 const app = express();
 
-// app.use(cors());
-let corsOptions = {
-  origin: 'http://localhost:5000',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+app.use(cors());
+
+var corsOptions = {
+  origin: 'https://sampletest-d0be9f7bd455.herokuapp.com/',
+  optionsSuccessStatus: 200
 }
 
 app.get('/todos', cors(corsOptions), async (req, res) => {
