@@ -6,9 +6,13 @@ const cors = require('cors');
 
 const app = express();
 
-app.use(cors());
+// app.use(cors());
+let corsOptions = {
+  origin: 'http://localhost:5000',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
-app.get('/todos', async (req, res) => {
+app.get('/todos', cors(corsOptions), async (req, res) => {
   try {
     const todos = await pool.query('SELECT * FROM todos')
     res.json(todos.rows)
