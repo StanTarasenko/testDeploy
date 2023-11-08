@@ -6,14 +6,14 @@ const cors = require('cors');
 
 const app = express();
 
-app.use(cors());
-
-var corsOptions = {
-  origin: 'https://sampletest-d0be9f7bd455.herokuapp.com/',
+let corsOptions = {
+  origin: 'http://localhost:5000',
   optionsSuccessStatus: 200
 }
 
-app.get('/todos', cors(corsOptions), async (req, res) => {
+app.use(cors(corsOptions));
+
+app.get('/todos', async (req, res) => {
   try {
     const todos = await pool.query('SELECT * FROM todos')
     res.json(todos.rows)
